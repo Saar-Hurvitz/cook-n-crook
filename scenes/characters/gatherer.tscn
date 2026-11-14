@@ -1,0 +1,22 @@
+[gd_scene format=3 uid="uid://bqpcjm7aa0qis"]
+
+[ext_resource type="Script" uid="uid://5joxv463vqtp" path="res://scripts/gatherer/gatherer.gd" id="1_gatherer"]
+[ext_resource type="Script" uid="uid://17cpjpxdebfg" path="res://scripts/gatherer/gatherer_camera.gd" id="2_camera"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gatherer"]
+size = Vector2(31.5, 68)
+
+[node name="Gatherer" type="CharacterBody2D" unique_id=1344209146]
+collision_layer = 2
+collision_mask = 5
+script = ExtResource("1_gatherer")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1450183818]
+position = Vector2(0.75, -1)
+shape = SubResource("RectangleShape2D_gatherer")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1332577890]
+offset = Vector2(0, -8)
+
+[node name="GathererCamera" type="Camera2D" parent="." unique_id=151153742]
+script = ExtResource("2_camera")

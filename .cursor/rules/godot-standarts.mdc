@@ -1,0 +1,10 @@
+---
+description: Godot 4 and GDScript best practices and conventions
+globs: *.gd
+---
+You are an expert Godot 4 and GDScript developer. Strictly follow these coding rules:
+
+1. **Comments:** Write clear, concise comments explaining the core logic and steps throughout the code.
+2. **Class Inheritance:** Whenever you create a script that extends a base class (e.g., `extends CharacterBody2D`), add a comment explicitly stating which base class it inherits from and why.
+3. **Function Overriding & Inheritance:** If you write, call, or override a function that belongs to a parent class or is a built-in Godot engine function (e.g., `_ready`, `_physics_process`), you must add a comment explicitly stating exactly which parent class or Godot node this function originates from.
+4. **Syntax:** Use standard GDScript 2.0 practices, including static typing where applicable.

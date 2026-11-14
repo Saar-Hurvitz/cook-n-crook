@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://invisible_collision_block"]
+
+[ext_resource type="Script" path="res://scripts/world/invisible_collision_block.gd" id="1_block"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_block"]
+size = Vector2(40, 40)
+
+[node name="InvisibleCollisionBlock" type="StaticBody2D"]
+collision_layer = 1
+collision_mask = 2
+script = ExtResource("1_block")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_block")

@@ -1,0 +1,151 @@
+[gd_scene format=3 uid="uid://0ll0dt5pofca"]
+
+[ext_resource type="Script" uid="uid://cyh825jispp6p" path="res://scripts/maze/maze.gd" id="1_maze"]
+[ext_resource type="Texture2D" uid="uid://dsacswqc6i16t" path="res://assets/map/map_cartoon.png" id="2_map_bg"]
+[ext_resource type="PackedScene" path="res://scenes/world/invisible_collision_block.tscn" id="3_xtbws"]
+
+[node name="Maze" type="Node2D" unique_id=265016955]
+script = ExtResource("1_maze")
+maze_size = Vector2i(32, 23)
+cell_size = 84
+
+[node name="Background" type="Node2D" parent="." unique_id=1310372418]
+scale = Vector2(0.95454544, 1.2578125)
+
+[node name="MapSprite" type="Sprite2D" parent="Background" unique_id=1310372419]
+z_index = -10
+texture = ExtResource("2_map_bg")
+centered = false
+
+[node name="VideoViewport" type="SubViewport" parent="Background" unique_id=1310372420]
+disable_3d = true
+size = Vector2i(2816, 1536)
+render_target_update_mode = 4
+
+[node name="VideoStreamPlayer" type="VideoStreamPlayer" parent="Background/VideoViewport" unique_id=1310372421]
+offset_right = 2816.0
+offset_bottom = 1536.0
+expand = true
+
+[node name="CollisionBlocks" type="Node2D" parent="Background" unique_id=1715751247]
+
+[node name="InvisibleCollisionBlock" parent="Background/CollisionBlocks" unique_id=270593593 instance=ExtResource("3_xtbws")]
+position = Vector2(2006.1906, 1000.14905)
+block_width = 364.0
+block_height = 175.0
+
+[node name="InvisibleCollisionBlock2" parent="Background/CollisionBlocks" unique_id=1831435489 instance=ExtResource("3_xtbws")]
+position = Vector2(1478, 1004)
+block_width = 278.0
+block_height = 174.0
+
+[node name="InvisibleCollisionBlock3" parent="Background/CollisionBlocks" unique_id=1407454223 instance=ExtResource("3_xtbws")]
+position = Vector2(1470.8572, 616.14905)
+block_width = 614.0
+block_height = 157.0
+
+[node name="InvisibleCollisionBlock4" parent="Background/CollisionBlocks" unique_id=1451327112 instance=ExtResource("3_xtbws")]
+position = Vector2(1010.9524, 597.0683)
+block_width = 100.0
+block_height = 125.0
+
+[node name="InvisibleCollisionBlock5" parent="Background/CollisionBlocks" unique_id=1468292444 instance=ExtResource("3_xtbws")]
+position = Vector2(713.4286, 667.8261)
+block_width = 461.0
+block_height = 465.0
+
+[node name="InvisibleCollisionBlock6" parent="Background/CollisionBlocks" unique_id=1871700992 instance=ExtResource("3_xtbws")]
+position = Vector2(640.0953, 1004.1242)
+block_width = 301.0
+block_height = 210.0
+
+[node name="InvisibleCollisionBlock7" parent="Background/CollisionBlocks" unique_id=1725417457 instance=ExtResource("3_xtbws")]
+position = Vector2(826.5715, 993.7888)
+block_width = 78.0
+block_height = 185.0
+
+[node name="InvisibleCollisionBlock8" parent="Background/CollisionBlocks" unique_id=344326900 instance=ExtResource("3_xtbws")]
+position = Vector2(1066.4762, 1008.8944)
+block_width = 148.0
+block_height = 180.0
+
+[node name="InvisibleCollisionBlock9" parent="Background/CollisionBlocks" unique_id=1897293516 instance=ExtResource("3_xtbws")]
+position = Vector2(963.8096, 121.639755)
+block_width = 2186.0
+block_height = 482.0
+
+[node name="InvisibleCollisionBlock10" parent="Background/CollisionBlocks" unique_id=1438186917 instance=ExtResource("3_xtbws")]
+position = Vector2(98.47618, 710.75775)
+block_width = 518.0
+block_height = 710.0
+
+[node name="InvisibleCollisionBlock11" parent="Background/CollisionBlocks" unique_id=373671227 instance=ExtResource("3_xtbws")]
+position = Vector2(86.952385, 1253.7639)
+block_width = 480.0
+block_height = 382.0
+
+[node name="InvisibleCollisionBlock12" parent="Background/CollisionBlocks" unique_id=331159175 instance=ExtResource("3_xtbws")]
+position = Vector2(293.33334, 1482.7329)
+block_width = 683.0
+block_height = 155.0
+
+[node name="InvisibleCollisionBlock13" parent="Background/CollisionBlocks" unique_id=1268670584 instance=ExtResource("3_xtbws")]
+position = Vector2(1478.1906, 1436.6211)
+block_width = 1705.0
+block_height = 250.0
+
+[node name="InvisibleCollisionBlock14" parent="Background/CollisionBlocks" unique_id=1154771057 instance=ExtResource("3_xtbws")]
+position = Vector2(601.3334, 1361.0933)
+block_width = 50.0
+block_height = 90.0
+
+[node name="InvisibleCollisionBlock15" parent="Background/CollisionBlocks" unique_id=1766381399 instance=ExtResource("3_xtbws")]
+position = Vector2(2209.4285, 1290.3354)
+block_width = 155.0
+
+[node name="InvisibleCollisionBlock16" parent="Background/CollisionBlocks" unique_id=260344472 instance=ExtResource("3_xtbws")]
+position = Vector2(1974.7618, 511.205)
+block_width = 193.0
+block_height = 310.0
+
+[node name="InvisibleCollisionBlock17" parent="Background/CollisionBlocks" unique_id=1921645400 instance=ExtResource("3_xtbws")]
+position = Vector2(2135.0476, 569.24225)
+block_width = 404.0
+block_height = 269.0
+
+[node name="InvisibleCollisionBlock18" parent="Background/CollisionBlocks" unique_id=1702436249 instance=ExtResource("3_xtbws")]
+position = Vector2(2236.6667, 920.646)
+block_width = 200.0
+block_height = 442.0
+
+[node name="InvisibleCollisionBlock19" parent="Background/CollisionBlocks" unique_id=1968360968 instance=ExtResource("3_xtbws")]
+position = Vector2(2119.3335, 791.0559)
+block_width = 130.0
+block_height = 97.0
+
+[node name="InvisibleCollisionBlock20" parent="Background/CollisionBlocks" unique_id=1499906502 instance=ExtResource("3_xtbws")]
+position = Vector2(2571.9048, 1494.6584)
+block_width = 490.0
+block_height = 174.0
+
+[node name="InvisibleCollisionBlock21" parent="Background/CollisionBlocks" unique_id=468725065 instance=ExtResource("3_xtbws")]
+position = Vector2(2655.7144, 659.8758)
+block_width = 289.0
+block_height = 1500.0
+
+[node name="InvisibleCollisionBlock22" parent="Background/CollisionBlocks" unique_id=1595106521 instance=ExtResource("3_xtbws")]
+position = Vector2(2283.8096, 133.56522)
+block_width = 461.0
+block_height = 480.0
+
+[node name="GathererSpawns" type="Node2D" parent="Background" unique_id=1715751248]
+
+[node name="GathererSpawnA" type="Marker2D" parent="Background/GathererSpawns" unique_id=1715751249]
+position = Vector2(1300, 900)
+
+[node name="GathererSpawnB" type="Marker2D" parent="Background/GathererSpawns" unique_id=1715751250]
+position = Vector2(1900, 900)
+
+[node name="Walls" type="Node2D" parent="." unique_id=1674094881]
+
+[node name="Pickups" type="Node2D" parent="." unique_id=1420091472]

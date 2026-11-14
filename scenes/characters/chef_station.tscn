@@ -1,0 +1,373 @@
+[gd_scene load_steps=13 format=3 uid="uid://chef_station"]
+
+[ext_resource type="Script" path="res://scripts/chef/chef_station.gd" id="1_chef"]
+[ext_resource type="PackedScene" uid="uid://recipe_ui" path="res://scenes/ui/recipe_ui.tscn" id="2_recipe"]
+[ext_resource type="Texture2D" path="res://assets/weapons/knife.png" id="3_knife"]
+[ext_resource type="Texture2D" path="res://assets/weapons/spoon.png" id="3_spoon"]
+[ext_resource type="Texture2D" path="res://assets/cooking/cut.png" id="4_cut"]
+[ext_resource type="Texture2D" path="res://assets/cooking/cook.png" id="5_cook"]
+[ext_resource type="Texture2D" path="res://assets/characters/chef/chef_background/chef_background.png" id="6_bg"]
+[ext_resource type="Texture2D" path="res://assets/characters/chef/chef_UI/serving_plate.png" id="7_serve_plate"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_popup"]
+bg_color = Color(0.1, 0.11, 0.16, 0.97)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(1, 0.85, 0.2, 1)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
+content_margin_left = 12.0
+content_margin_top = 10.0
+content_margin_right = 12.0
+content_margin_bottom = 10.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_station_normal"]
+bg_color = Color(0.960784, 0.835294, 0.278431, 0.5)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.831373, 0.721569, 0.188235, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_station_hover"]
+bg_color = Color(1, 0.878431, 0.4, 0.5)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.960784, 0.835294, 0.278431, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_station_pressed"]
+bg_color = Color(0.831373, 0.721569, 0.188235, 0.5)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.662745, 0.564706, 0.12549, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[node name="ChefStation" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_chef")
+
+[node name="Background" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("6_bg")
+expand_mode = 1
+stretch_mode = 6
+
+[node name="RecipeUI" parent="." instance=ExtResource("2_recipe")]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 8.0
+offset_top = 6.0
+offset_right = -92.0
+offset_bottom = 118.0
+grow_horizontal = 2
+
+[node name="KnifeResupplyButton" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -82.0
+offset_top = 6.0
+offset_right = -8.0
+offset_bottom = 44.0
+grow_horizontal = 0
+clip_contents = true
+tooltip_text = "Send a knife to your gatherer"
+theme_override_font_sizes/font_size = 12
+icon = ExtResource("3_knife")
+text = "+1"
+
+[node name="SpoonResupplyButton" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -82.0
+offset_top = 63.0
+offset_right = -8.0
+offset_bottom = 86.0
+grow_horizontal = 0
+clip_contents = true
+tooltip_text = "Send a spoon charge to your gatherer"
+theme_override_constants/icon_max_width = 22
+theme_override_constants/icon_max_height = 22
+theme_override_font_sizes/font_size = 12
+icon = ExtResource("3_spoon")
+text = "+1"
+
+[node name="Stations" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 8.0
+offset_top = 122.0
+offset_right = -8.0
+offset_bottom = 194.0
+grow_horizontal = 2
+theme_override_constants/separation = 6
+
+[node name="CutBox" type="Button" parent="Stations"]
+layout_mode = 2
+size_flags_horizontal = 3
+clip_contents = true
+text = ""
+theme_override_styles/normal = SubResource("StyleBoxFlat_station_normal")
+theme_override_styles/hover = SubResource("StyleBoxFlat_station_hover")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_station_pressed")
+
+[node name="VBox" type="VBoxContainer" parent="Stations/CutBox"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_constants/separation = 2
+alignment = 1
+
+[node name="Title" type="TextureRect" parent="Stations/CutBox/VBox"]
+custom_minimum_size = Vector2(28, 28)
+layout_mode = 2
+mouse_filter = 2
+texture = ExtResource("4_cut")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="IconRow" type="HBoxContainer" parent="Stations/CutBox/VBox"]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/separation = 2
+alignment = 1
+
+[node name="Progress" type="ProgressBar" parent="Stations/CutBox/VBox"]
+custom_minimum_size = Vector2(0, 8)
+layout_mode = 2
+mouse_filter = 2
+visible = false
+show_percentage = false
+
+[node name="CookBox" type="Button" parent="Stations"]
+layout_mode = 2
+size_flags_horizontal = 3
+clip_contents = true
+text = ""
+theme_override_styles/normal = SubResource("StyleBoxFlat_station_normal")
+theme_override_styles/hover = SubResource("StyleBoxFlat_station_hover")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_station_pressed")
+
+[node name="VBox" type="VBoxContainer" parent="Stations/CookBox"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_constants/separation = 1
+alignment = 1
+
+[node name="Title" type="TextureRect" parent="Stations/CookBox/VBox"]
+custom_minimum_size = Vector2(38, 38)
+layout_mode = 2
+size_flags_vertical = 0
+mouse_filter = 2
+texture = ExtResource("5_cook")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="IconRow" type="HBoxContainer" parent="Stations/CookBox/VBox"]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/separation = 2
+alignment = 1
+
+[node name="Progress" type="ProgressBar" parent="Stations/CookBox/VBox"]
+custom_minimum_size = Vector2(0, 8)
+layout_mode = 2
+mouse_filter = 2
+visible = false
+show_percentage = false
+
+[node name="ServeBox" type="Button" parent="Stations"]
+layout_mode = 2
+size_flags_horizontal = 3
+clip_contents = true
+text = ""
+tooltip_text = "Click for serve / cook / throw options"
+theme_override_styles/normal = SubResource("StyleBoxFlat_station_normal")
+theme_override_styles/hover = SubResource("StyleBoxFlat_station_hover")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_station_pressed")
+
+[node name="VBox" type="VBoxContainer" parent="Stations/ServeBox"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_constants/separation = 1
+alignment = 1
+
+[node name="Title" type="TextureRect" parent="Stations/ServeBox/VBox"]
+custom_minimum_size = Vector2(28, 28)
+layout_mode = 2
+size_flags_vertical = 0
+mouse_filter = 2
+texture = ExtResource("7_serve_plate")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="IconRow" type="HBoxContainer" parent="Stations/ServeBox/VBox"]
+layout_mode = 2
+size_flags_vertical = 0
+mouse_filter = 2
+theme_override_constants/separation = 2
+alignment = 1
+
+[node name="DishImage" type="TextureRect" parent="Stations/ServeBox/VBox"]
+custom_minimum_size = Vector2(26, 26)
+layout_mode = 2
+size_flags_vertical = 0
+mouse_filter = 2
+visible = false
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Progress" type="ProgressBar" parent="Stations/ServeBox/VBox"]
+custom_minimum_size = Vector2(0, 8)
+layout_mode = 2
+mouse_filter = 2
+visible = false
+show_percentage = false
+
+[node name="IngredientGrid" type="GridContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 8.0
+offset_top = 198.0
+offset_right = -8.0
+offset_bottom = -8.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/h_separation = 6
+theme_override_constants/v_separation = 6
+columns = 5
+
+[node name="ActionPopup" type="PanelContainer" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_popup")
+
+[node name="VBox" type="VBoxContainer" parent="ActionPopup"]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="Buttons" type="HBoxContainer" parent="ActionPopup/VBox"]
+layout_mode = 2
+theme_override_constants/separation = 8
+alignment = 1
+
+[node name="CutButton" type="Button" parent="ActionPopup/VBox/Buttons"]
+custom_minimum_size = Vector2(80, 40)
+layout_mode = 2
+clip_contents = true
+theme_override_font_sizes/font_size = 12
+text = "Cut"
+
+[node name="CookButton" type="Button" parent="ActionPopup/VBox/Buttons"]
+custom_minimum_size = Vector2(80, 40)
+layout_mode = 2
+clip_contents = true
+theme_override_font_sizes/font_size = 12
+text = "Cook"
+
+[node name="ServeButton" type="Button" parent="ActionPopup/VBox/Buttons"]
+custom_minimum_size = Vector2(80, 40)
+layout_mode = 2
+clip_contents = true
+theme_override_font_sizes/font_size = 12
+text = "Serve"
+
+[node name="ServePopup" type="PanelContainer" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_popup")
+
+[node name="VBox" type="VBoxContainer" parent="ServePopup"]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="Buttons" type="HBoxContainer" parent="ServePopup/VBox"]
+layout_mode = 2
+theme_override_constants/separation = 8
+alignment = 1
+
+[node name="DeliverButton" type="Button" parent="ServePopup/VBox/Buttons"]
+custom_minimum_size = Vector2(80, 40)
+layout_mode = 2
+clip_contents = true
+theme_override_font_sizes/font_size = 12
+text = "Serve"
+
+[node name="CookAllButton" type="Button" parent="ServePopup/VBox/Buttons"]
+custom_minimum_size = Vector2(80, 40)
+layout_mode = 2
+clip_contents = true
+theme_override_font_sizes/font_size = 12
+text = "Cook"
+
+[node name="ThrowButton" type="Button" parent="ServePopup/VBox/Buttons"]
+custom_minimum_size = Vector2(80, 40)
+layout_mode = 2
+clip_contents = true
+theme_override_font_sizes/font_size = 12
+text = "Throw"

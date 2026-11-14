@@ -1,0 +1,219 @@
+[gd_scene format=3 uid="uid://dgg61mgecgg0d"]
+
+[ext_resource type="Script" uid="uid://ch04e5adi0mht" path="res://scripts/main.gd" id="1_main"]
+[ext_resource type="Script" uid="uid://dwmv8aohqjv78" path="res://scripts/core/split_screen_root.gd" id="2_split"]
+[ext_resource type="Script" uid="uid://b38cmbxmxmmxq" path="res://scripts/core/quadrant_panel.gd" id="3_quadrant"]
+[ext_resource type="PackedScene" path="res://scenes/maze/maze.tscn" id="4_maze"]
+[ext_resource type="PackedScene" path="res://scenes/characters/gatherer.tscn" id="5_gatherer"]
+[ext_resource type="PackedScene" path="res://scenes/characters/chef_station.tscn" id="6_chef"]
+[ext_resource type="Script" uid="uid://ijp242fvsh1g" path="res://scripts/core/input_router.gd" id="8_input"]
+[ext_resource type="PackedScene" path="res://scenes/ui/global_hud.tscn" id="9_hud"]
+[ext_resource type="PackedScene" path="res://scenes/ui/gatherer_hud.tscn" id="10_ghud"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_frame"]
+bg_color = Color(0, 0, 0, 0)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.55, 0.55, 0.6, 1)
+
+[node name="Main" type="Node" unique_id=2056063228]
+script = ExtResource("1_main")
+
+[node name="WorldHost" type="SubViewport" parent="." unique_id=435690429]
+handle_input_locally = false
+size = Vector2i(2, 2)
+render_target_update_mode = 0
+
+[node name="SharedMazeWorld" type="Node2D" parent="WorldHost" unique_id=726672371]
+
+[node name="Maze" parent="WorldHost/SharedMazeWorld" unique_id=1643270299 instance=ExtResource("4_maze")]
+
+[node name="GathererA" parent="WorldHost/SharedMazeWorld" unique_id=1303881280 instance=ExtResource("5_gatherer")]
+
+[node name="GathererB" parent="WorldHost/SharedMazeWorld" unique_id=1647310704 instance=ExtResource("5_gatherer")]
+
+[node name="SplitScreenRoot" type="Control" parent="." unique_id=1261745104]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("2_split")
+
+[node name="Grid" type="GridContainer" parent="SplitScreenRoot" unique_id=533008425]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/h_separation = 0
+theme_override_constants/v_separation = 0
+columns = 2
+
+[node name="QuadrantA_Gatherer" type="SubViewportContainer" parent="SplitScreenRoot/Grid" unique_id=1236846954]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+stretch = true
+script = ExtResource("3_quadrant")
+quadrant_label = "Team A — Gatherer"
+
+[node name="SubViewport" type="SubViewport" parent="SplitScreenRoot/Grid/QuadrantA_Gatherer" unique_id=765018016]
+handle_input_locally = false
+size = Vector2i(640, 360)
+render_target_clear_mode = 1
+render_target_update_mode = 4
+
+[node name="GathererHUD" parent="SplitScreenRoot/Grid/QuadrantA_Gatherer/SubViewport" instance=ExtResource("10_ghud")]
+team = 0
+
+[node name="Frame" type="Panel" parent="SplitScreenRoot/Grid/QuadrantA_Gatherer" unique_id=1494831906]
+layout_mode = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_frame")
+
+[node name="ActiveBorder" type="ColorRect" parent="SplitScreenRoot/Grid/QuadrantA_Gatherer" unique_id=415869751]
+visible = false
+layout_mode = 2
+mouse_filter = 2
+color = Color(1, 0.9, 0.2, 0.35)
+
+[node name="OverlayLabel" type="Label" parent="SplitScreenRoot/Grid/QuadrantA_Gatherer" unique_id=1837912247]
+layout_mode = 2
+theme_override_font_sizes/font_size = 14
+text = "Team A — Gatherer"
+
+[node name="QuadrantA_Chef" type="SubViewportContainer" parent="SplitScreenRoot/Grid" unique_id=330415654]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+stretch = true
+script = ExtResource("3_quadrant")
+player_slot = 1
+quadrant_label = "Team A — Chef"
+
+[node name="SubViewport" type="SubViewport" parent="SplitScreenRoot/Grid/QuadrantA_Chef" unique_id=853246439]
+handle_input_locally = false
+size = Vector2i(640, 360)
+render_target_clear_mode = 1
+render_target_update_mode = 4
+
+[node name="ChefStation" parent="SplitScreenRoot/Grid/QuadrantA_Chef/SubViewport" unique_id=974355902 instance=ExtResource("6_chef")]
+
+[node name="Frame" type="Panel" parent="SplitScreenRoot/Grid/QuadrantA_Chef" unique_id=1781754390]
+layout_mode = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_frame")
+
+[node name="ActiveBorder" type="ColorRect" parent="SplitScreenRoot/Grid/QuadrantA_Chef" unique_id=1498385547]
+visible = false
+layout_mode = 2
+mouse_filter = 2
+color = Color(1, 0.9, 0.2, 0.35)
+
+[node name="OverlayLabel" type="Label" parent="SplitScreenRoot/Grid/QuadrantA_Chef" unique_id=1924595258]
+layout_mode = 2
+theme_override_font_sizes/font_size = 14
+text = "Team A — Chef"
+
+[node name="QuadrantB_Chef" type="SubViewportContainer" parent="SplitScreenRoot/Grid" unique_id=224048071]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+stretch = true
+script = ExtResource("3_quadrant")
+player_slot = 3
+quadrant_label = "Team B — Chef"
+
+[node name="SubViewport" type="SubViewport" parent="SplitScreenRoot/Grid/QuadrantB_Chef" unique_id=1223115555]
+handle_input_locally = false
+size = Vector2i(640, 360)
+render_target_clear_mode = 1
+render_target_update_mode = 4
+
+[node name="ChefStation" parent="SplitScreenRoot/Grid/QuadrantB_Chef/SubViewport" unique_id=624349106 instance=ExtResource("6_chef")]
+team = 1
+
+[node name="Frame" type="Panel" parent="SplitScreenRoot/Grid/QuadrantB_Chef" unique_id=349185751]
+layout_mode = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_frame")
+
+[node name="ActiveBorder" type="ColorRect" parent="SplitScreenRoot/Grid/QuadrantB_Chef" unique_id=986395239]
+visible = false
+layout_mode = 2
+mouse_filter = 2
+color = Color(1, 0.9, 0.2, 0.35)
+
+[node name="OverlayLabel" type="Label" parent="SplitScreenRoot/Grid/QuadrantB_Chef" unique_id=1796538525]
+layout_mode = 2
+theme_override_font_sizes/font_size = 14
+text = "Team B — Chef"
+
+[node name="QuadrantB_Gatherer" type="SubViewportContainer" parent="SplitScreenRoot/Grid" unique_id=755891291]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+stretch = true
+script = ExtResource("3_quadrant")
+player_slot = 2
+quadrant_label = "Team B — Gatherer"
+
+[node name="SubViewport" type="SubViewport" parent="SplitScreenRoot/Grid/QuadrantB_Gatherer" unique_id=1045893132]
+handle_input_locally = false
+size = Vector2i(640, 360)
+render_target_clear_mode = 1
+render_target_update_mode = 4
+
+[node name="GathererHUD" parent="SplitScreenRoot/Grid/QuadrantB_Gatherer/SubViewport" instance=ExtResource("10_ghud")]
+team = 1
+
+[node name="Frame" type="Panel" parent="SplitScreenRoot/Grid/QuadrantB_Gatherer" unique_id=1725071169]
+layout_mode = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_frame")
+
+[node name="ActiveBorder" type="ColorRect" parent="SplitScreenRoot/Grid/QuadrantB_Gatherer" unique_id=1039538801]
+visible = false
+layout_mode = 2
+mouse_filter = 2
+color = Color(1, 0.9, 0.2, 0.35)
+
+[node name="OverlayLabel" type="Label" parent="SplitScreenRoot/Grid/QuadrantB_Gatherer" unique_id=459223528]
+layout_mode = 2
+theme_override_font_sizes/font_size = 14
+text = "Team B — Gatherer"
+
+[node name="Dividers" type="Control" parent="SplitScreenRoot" unique_id=361750821]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="VerticalLine" type="ColorRect" parent="SplitScreenRoot/Dividers" unique_id=824534047]
+layout_mode = 0
+offset_left = 638.0
+offset_right = 642.0
+offset_bottom = 720.0
+mouse_filter = 2
+color = Color(0.95, 0.95, 1, 1)
+
+[node name="HorizontalLine" type="ColorRect" parent="SplitScreenRoot/Dividers" unique_id=2116249158]
+layout_mode = 0
+offset_top = 358.0
+offset_right = 1280.0
+offset_bottom = 362.0
+mouse_filter = 2
+color = Color(0.95, 0.95, 1, 1)
+
+[node name="InputRouter" type="Node" parent="." unique_id=1567287039]
+script = ExtResource("8_input")
+
+[node name="GlobalHUD" parent="." unique_id=301629292 instance=ExtResource("9_hud")]

@@ -1,0 +1,51 @@
+[gd_scene load_steps=2 format=3 uid="uid://recipe_ui"]
+
+[ext_resource type="Script" path="res://scripts/chef/recipe_ui.gd" id="1_recipe"]
+
+[node name="RecipeUI" type="Control"]
+layout_mode = 3
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 128.0
+grow_horizontal = 2
+mouse_filter = 2
+script = ExtResource("1_recipe")
+
+[node name="VBox" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_constants/separation = 2
+
+[node name="DishRow" type="HBoxContainer" parent="VBox"]
+layout_mode = 2
+size_flags_vertical = 3
+mouse_filter = 2
+theme_override_constants/separation = 8
+
+[node name="DishImage" type="TextureRect" parent="VBox/DishRow"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+mouse_filter = 2
+expand_mode = 1
+stretch_mode = 5
+
+[node name="IngredientsScroll" type="ScrollContainer" parent="VBox/DishRow"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+mouse_filter = 2
+horizontal_scroll_mode = 0
+vertical_scroll_mode = 0
+
+[node name="IngredientsRow" type="HBoxContainer" parent="VBox/DishRow/IngredientsScroll"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+mouse_filter = 2
+theme_override_constants/separation = 4
+alignment = 1
