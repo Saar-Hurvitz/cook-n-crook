@@ -1,9 +1,0 @@
-# Apply Changes Directly
-
-When the user asks for a change in this project, treat that request as approval to apply it. Do not stop to ask for permission before editing.
-
-1. **Apply immediately** — When the user describes something to do, make the edits with Write, StrReplace, or other tools right away. A request to do something IS the confirmation.
-2. **Show what changed** — After applying, briefly summarize the files touched and what changed (a short diff or bullet list per file). Keep it concise.
-3. **No approval gate** — Never block on "Want me to apply it?" prompts. The user has stated that asking for permission is unwanted.
-4. **Use judgment for destructive actions** — For irreversible or out-of-scope actions (deleting large amounts of work, force-resetting git, etc.), still flag the risk, but otherwise proceed.
-5. **Revert** — If the user asks to revert, apply the rollback directly and summarize what was undone.
