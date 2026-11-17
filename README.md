@@ -1,5 +1,7 @@
 # Cook n' Crook
 
+Made in 2 days by a team of two for the Shift Gaming Club game jam at Reichman University. I worked on game design, gameplay programming and level design. Developed with AI-assisted coding (Cursor).
+
 A 4-player couch co-op / versus cooking game made with **Godot 4.6**.
 
 Two teams race to cook the same dish. On each team, one player is the **Gatherer**, running around a shared kitchen to grab ingredients and fight off the other team, and one player is the **Chef**, who preps and plates the order back at the station. The team with the most points when the clock runs out wins.
